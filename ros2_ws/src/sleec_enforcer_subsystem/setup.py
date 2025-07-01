@@ -1,3 +1,5 @@
+import os
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = 'sleec_enforcer_subsystem'
@@ -10,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -20,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'observator_processor = sleec_enforcer_subsystem.abstraction_communication_layer.observation_processor:main',
+            'observation_processor = sleec_enforcer_subsystem.abstraction_communication_layer.observation_processor:main',
             'actuation_processor = sleec_enforcer_subsystem.abstraction_communication_layer.actuation_processor:main',
             'enforcer = sleec_enforcer_subsystem.enforcer:main',
         ],
